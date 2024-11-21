@@ -29,9 +29,9 @@ def calculate_monthly_cost(price, interest_rate, loan_length, downpayment, daily
 st.title("JCB Excavator Monthly Cost Calculator")
 
 # Input fields
-price = st.number_input("Total Cash Price of Machine (USD)", min_value=0.0, value=50000.0)
+price = st.number_input("Total Cash Price of Machine (USD)", min_value=0.0, value=80000.0)
 interest_rate = st.number_input("Interest Rate (%)", min_value=0.0, value=5.0)
-loan_length = st.slider("Loan Length (months)", min_value=36, max_value=60, value=48)
+loan_length = st.slider("Loan Length (months)", min_value=12, max_value=60, value=36)
 downpayment = st.slider("Downpayment (%)", min_value=10, max_value=50, value=20)
 daily_hours = st.number_input("Daily Operating Hours", min_value=0.0, value=8.0)
 
