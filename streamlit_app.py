@@ -268,7 +268,66 @@ else:
 
         st.plotly_chart(fig)
 
-        # Add ROI calculation
-        years_to_roi = price / annual_fuel_savings
-        st.subheader("Return on Investment Analysis")
-        st.write(f"Based on fuel savings alone, the JCB 215 NXT will pay for itself in {years_to_roi:.1f} years compared to competitor machines.")
+]
+
+def calculate_co2_savings(fuel_savings_liters):
+    """
+    Calculate CO2 savings based on fuel savings.
+    1 liter of diesel burned produces approximately 2.68 kg of CO2.
+    """
+    co2_per_liter = 2.68  # kg of CO2 per liter of diesel
+    return fuel_savings_liters * co2_per_liter
+
+def translate_co2_to_trees(co2_kg):
+    """
+    Translate CO2 savings into the number of trees planted.
+    One tree absorbs approximately 21.77 kg of CO2 per year.
+    """
+    co2_absorbed_per_tree = 21.77  # kg of CO2 per tree per year
+    return co2_kg / co2_absorbed_per_tree
+
+def translate_co2_to_plastic_bottles(co2_kg):
+    """
+    Translate CO2 savings into the number of plastic bottles manufactured.
+    Manufacturing one plastic bottle produces approximately 0.082 kg of CO2.
+    """
+    co2_per_bottle = 0.082  # kg of CO2 per plastic bottle
+    return co2_kg / co2_per_bottle
+
+def compare_fuel_and_co2_savings(jcb_fuel_rate, competitor_fuel_rate, daily_hours):
+    """
+    Compare JCB fuel savings with the competitor and translate the fuel savings into CO2 savings.
+    Then translate the CO2 savings into a mixture of comparisons such as trees planted and plastic bottles manufactured.
+    """
+    # Calculate monthly and annual fuel savings
+    monthly_fuel_savings = (competitor_fuel_rate - jcb_fuel_rate) * daily_hours * 30
+    annual_fuel_savings = monthly_fuel_savings * 12
+    
+    # Calculate CO2 savings
+    annual_co2_savings = calculate_co2_savings(annual_fuel_savings)
+    
+    # Translate CO2 savings into trees planted and plastic bottles manufactured
+    trees_planted = translate_co2_to_trees(annual_co2_savings)
+    plastic_bottles_manufactured = translate_co2_to_plastic_bottles(annual_co2_savings)
+    
+    return {
+        "monthly_fuel_savings": monthly_fuel_savings,
+        "annual_fuel_savings": annual_fuel_savings,
+        "annual_co2_savings": annual_co2_savings,
+        "trees_planted": trees_planted,
+        "plastic_bottles_manufactured": plastic_bottles_manufactured
+    }
+
+# Example usage
+jcb_fuel_rate = 7  # L/hr for JCB in eco mode 7
+competitor_fuel_rate = 16  # L/hr for competitor
+daily_hours = 8  # hours per day
+
+savings_comparison = compare_fuel_and_co2_savings(jcb_fuel_rate, competitor_fuel_rate, daily_hours)
+
+print(f"Monthly Fuel Savings: {savings_comparison['monthly_fuel_savings']} liters")
+print(f"Annual Fuel Savings: {savings_comparison['annual_fuel_savings']} liters")
+print(f"Annual CO2 Savings: {savings_comparison['annual_co2_savings']} kg")
+print(f"Equivalent Trees Planted: {savings_comparison['trees_planted']}")
+print(f"Equivalent Plastic Bottles Manufactured: {savings_comparison['plastic_bottles_manufactured']}")
+
