@@ -318,16 +318,4 @@ def compare_fuel_and_co2_savings(jcb_fuel_rate, competitor_fuel_rate, daily_hour
         "plastic_bottles_manufactured": plastic_bottles_manufactured
     }
 
-# Example usage
-jcb_fuel_rate = 7  # L/hr for JCB in eco mode 7
-competitor_fuel_rate = 16  # L/hr for competitor
-daily_hours = 8  # hours per day
-
-savings_comparison = compare_fuel_and_co2_savings(jcb_fuel_rate, competitor_fuel_rate, daily_hours)
-
-print(f"Monthly Fuel Savings: {savings_comparison['monthly_fuel_savings']} liters")
-print(f"Annual Fuel Savings: {savings_comparison['annual_fuel_savings']} liters")
-print(f"Annual CO2 Savings: {savings_comparison['annual_co2_savings']} kg")
-print(f"Equivalent Trees Planted: {savings_comparison['trees_planted']}")
-print(f"Equivalent Plastic Bottles Manufactured: {savings_comparison['plastic_bottles_manufactured']}")
 
