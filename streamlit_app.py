@@ -6,12 +6,12 @@ def get_fuel_consumption(eco_mode):
     """Get fuel consumption rate based on eco mode."""
     consumption_map = {
         1: 5,   # eco1
-        2: 6,   # eco2
-        3: 7,   # eco3
-        4: 8,   # eco4
-        5: 9,   # eco5
-        6: 10,  # eco6
-        7: 11,  # eco7
+        2: 5.5,   # eco2
+        3: 6,   # eco3
+        4: 6.5,   # eco4
+        5: 7,   # eco5
+        6: 8,  # eco6
+        7: 10,  # eco7
         8: 12   # eco8
     }
     return consumption_map.get(eco_mode, 5)  # Default to eco1 if invalid mode
